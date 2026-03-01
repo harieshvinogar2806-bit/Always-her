@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>For You ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      text-align: center;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .container {
+      padding: 40px;
+    }
+
+    .box {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background: white;
+      color: #ff4d6d;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    img {
+      width: 150px;
+      border-radius: 10px;
+      margin: 10px;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -10px;
+      color: #ff4d6d;
+      animation: floatUp 5s linear infinite;
+      font-size: 20px;
+    }
+
+    @keyframes floatUp {
+      from {transform: translateY(0);}
+      to {transform: translateY(-100vh);}
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="passwordSection" class="container">
+  <h2>Enter Password 💖</h2>
+  <input type="password" id="passwordInput" placeholder="Our special word">
+  <button onclick="checkPassword()">Enter</button>
+</div>
+
+<div id="mainContent" class="hidden container">
+
+  <div class="box">
+    <h1>For My Favorite Person 💕</h1>
+    <p>You make my world brighter ✨</p>
+
+    <h3>Click to Reveal 💌</h3>
+    <button onclick="revealMessage(1)">Message 1</button>
+    <button onclick="revealMessage(2)">Message 2</button>
+    <button onclick="revealMessage(3)">Message 3</button>
+
+    <p id="message1" class="hidden">You are my favorite notification ❤️</p>
+    <p id="message2" class="hidden">I feel lucky to have you 💫</p>
+    <p id="message3" class="hidden">You make ordinary days special 🌸</p>
+
+    <h3>Our Memories 📸</h3>
+    <img src="photo1.jpg" alt="Memory 1">
+    <img src="photo2.jpg" alt="Memory 2">
+    <img src="photo3.jpg" alt="Memory 3">
+
+  </div>
+
+  <audio autoplay loop>
+    <source src="" type="audio/mpeg">
+  </audio>
+
+</div>
+
+<script>
+  function checkPassword() {
+    var password = document.getElementById("passwordInput").value;
+    if (password === "US") {
+      document.getElementById("passwordSection").style.display = "none";
+      document.getElementById("mainContent").classList.remove("hidden");
+    } else {
+      alert("Wrong password 💔 Try again!");
+    }
+  }
+
+  function revealMessage(num) {
+    document.getElementById("message" + num).classList.toggle("hidden");
+  }
+
+  // Floating hearts generator
+  setInterval(function() {
+    var heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(function() {
+      heart.remove();
+    }, 5000);
+  }, 500);
+</script>
+
+</body>
+</html>
